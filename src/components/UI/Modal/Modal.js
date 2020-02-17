@@ -8,6 +8,8 @@ const Modal = (props)=>{
 		 transform : props.show ? 'translateY(0)' : 'translateY(-100vh)',
 		 opacity : props.show ? '1' : '0' 
 		}}
+
+		onClick = {props.clicked? props.clicked: null}
 		 className = "Modal">
 			{props.children}
 		</div>

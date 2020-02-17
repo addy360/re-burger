@@ -19,7 +19,7 @@
 }
 
 .Close{
-	transform: translateX(-100%);
+	transform: translateX(-150%);
 }
 
 @media(min-width: 500px){
