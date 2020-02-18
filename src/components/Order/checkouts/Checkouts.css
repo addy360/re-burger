@@ -1,0 +1,11 @@
+.Checkouts{
+	text-align: center;
+	width: 80%;
+	margin: auto;
+}
+
+@media(min-width: 600px){
+	.Checkouts{
+		width: 500px
+	}
+}

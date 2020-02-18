@@ -1,0 +1,9 @@
+.Order{
+	width:60%;
+	border-radius: 2px;
+	box-sizing: border-box;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+	border:rgba(0,0,0,.1) solid 1px;
+	margin: 10px auto;
+	padding: 10px;
+}
