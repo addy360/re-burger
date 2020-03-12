@@ -1,29 +1,11 @@
 import React, { Component } from 'react'
 import Checkouts from '../../components/Order/checkouts/Checkouts'
 import Contact from '../Checkout/Contact/Contact'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
+import { purchaseInit } from '../../store/actions/index'
+import { connect } from 'react-redux'
 
 class Checkout extends Component{
-	state = {
-		ingredients: null,
-		price:0
-	}
-
-	componentWillMount(){
-		let price = 0
-		let paramString = new URLSearchParams(this.props.location.search)
-		const ingredients = {}
-		for (let i of paramString.entries()){
-			if (i[0] === 'price') {
-				price = i[1]
-				continue
-			}
-			ingredients[i[0]] = +i[1]
-		}
-		this.setState({ingredients:{...ingredients},price:price})
-		console.log(this.state)
-	}
-
 	onCancel = ()=>{
 		this.props.history.goBack()
 	}
@@ -31,16 +13,30 @@ class Checkout extends Component{
 		this.props.history.replace('/checkout/contact')
 	}
 	render(){
-		return (
-			<div>
-				<Checkouts cancel ={this.onCancel} 
-				continue ={this.onContinue} 
-				ingredients={this.state.ingredients}
-				/>
-				<Route path={ this.props.match.path + '/contact' } render={(props)=><Contact data={this.state} {...props}/>} />
-			</div>
-		)
+		let checkout = <Redirect to="/"/>
+		if (this.props.ings) {
+			// TODO: NEED FURTHER INSPECTION, TIRED NOW :(
+			// const purchasedRedirect = this.props.purchased ? <Redirect to="/"/> : null
+			checkout =( <div>
+							
+							<Checkouts cancel ={this.onCancel} 
+							continue ={this.onContinue} 
+							ingredients={this.props.ings}
+							/>
+							<Route path={ this.props.match.path + '/contact' } component={Contact} />
+						</div>)
+		}
+		return checkout
 	}
 }
 
-export default Checkout
+const mapStateToProps = state=>{
+	return {
+		ings:state.burgerBuilder.ingredients,
+		purchased:state.orders.purchased
+	}
+}
+
+
+
+export default connect(mapStateToProps)(Checkout)
