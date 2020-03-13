@@ -13,7 +13,7 @@ const Sidenav = (props)=>{
 	return (
 		<Aux>
 			<Backdrop toggleShow={props.clicked} show = {props.show}/>
-			<div className={classes.join(' ')}>
+			<div className={classes.join(' ')} onClick={props.clicked}>
 				<div style={{height:"11%", margin:'32px'}}>
 					<Logo/>
 				</div>

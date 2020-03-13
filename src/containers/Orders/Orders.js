@@ -13,9 +13,14 @@ class Orders extends Component{
 	}
 
 	render(){
-		let order = !this.props.loading ? this.props.orders.map(el=>{
+		let order
+		if(this.props.orders){
+
+		
+	        order = !this.props.loading ? this.props.orders.map(el=>{
 			return <Order key={el.id} price={el.price} ingredients = {el.ingredients}/>
 		}) : <Spinner/>
+	}
 
 		// if(this.props.loading) {
 		// 	order=<Spinner/>
@@ -29,7 +34,6 @@ class Orders extends Component{
 }
 
 const mapStateToProps = state =>{
-	console.log(state)
 	return {
 		orders : state.orders.orders,
 		loading : state.orders.loading,

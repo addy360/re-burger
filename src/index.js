@@ -10,7 +10,8 @@ import orderReducer from './store/reducers/order'
 import authReducer from './store/reducers/auth'
 
 import thunk from 'redux-thunk'
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// console.log(process.env.NODE_ENV)
+const composeEnhancers = process.env.NODE_ENV=== 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose
 
 // combined reducers
 const rootReducer = combineReducers({
@@ -18,7 +19,7 @@ const rootReducer = combineReducers({
 	orders:orderReducer,
 	auth:authReducer
 })
-console.log(rootReducer)
+// console.log(rootReducer)
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 // console.log(store)
 const app = <Provider store={store}><App/></Provider>

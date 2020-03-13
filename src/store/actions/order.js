@@ -78,14 +78,14 @@ export const fetchOrder = (token,userId) =>{
 				for(let key in res.data){
 					fetchedData.push({id:key,...res.data[key]})
 				}
-				console.log(fetchedData)
+				// console.log(fetchedData)
 				dispatch(fetchOrderSuccess(fetchedData))
 
 			})
 			.catch(err=>{
 				// this.setState({loading:false, modal:false})
 				dispatch(fetchOrderFail(err))
-				console.log(err)
+				// console.log(err)
 			})
 	}
 }

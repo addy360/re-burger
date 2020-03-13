@@ -51,7 +51,6 @@ class Auth extends Component{
 				isSignup:!prevState.isSignup
 			}
 		})
-		console.log(this.state)
 	}
 	render(){
 			// console.log(this.state)

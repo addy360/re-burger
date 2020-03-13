@@ -15,7 +15,7 @@ const WithError = (WrappedCompnt, axios)=>{
 				this.setState({error:null})
 				return req
 			})
-			console.log("component did update")
+			// console.log("component did update")
 		}
 
 		componentWillUnmount(){

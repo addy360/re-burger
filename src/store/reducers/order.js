@@ -35,7 +35,7 @@ const reducer = (state = initialState, action)=>{
 		case PURCHASE_INIT:
 			return{
 				...state,
-				purchased:true
+				purchased:false
 			}
 		case FETCH_ORDER_START:
 			return{

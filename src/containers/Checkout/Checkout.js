@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Checkouts from '../../components/Order/checkouts/Checkouts'
 import Contact from '../Checkout/Contact/Contact'
 import { Route, Redirect } from 'react-router-dom'
-import { purchaseInit } from '../../store/actions/index'
+// import { purchaseInit } from '../../store/actions/index'
 import { connect } from 'react-redux'
 
 class Checkout extends Component{
@@ -13,12 +13,13 @@ class Checkout extends Component{
 		this.props.history.replace('/checkout/contact')
 	}
 	render(){
-		let checkout = <Redirect to="/"/>
+		let checkout = null
 		if (this.props.ings) {
 			// TODO: NEED FURTHER INSPECTION, TIRED NOW :(
+			 const purchasedRedirect = this.props.purchased ? <Redirect to="/"/> : null;
 			// const purchasedRedirect = this.props.purchased ? <Redirect to="/"/> : null
 			checkout =( <div>
-							
+							{purchasedRedirect}
 							<Checkouts cancel ={this.onCancel} 
 							continue ={this.onContinue} 
 							ingredients={this.props.ings}
