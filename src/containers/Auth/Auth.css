@@ -1,0 +1,36 @@
+.Contact{
+	margin: 20px auto;
+	width: 80%;
+	text-align: center;
+	box-sizing: border-box;
+	box-shadow: 3px 3px 3px rgba(0,0,0,.4);
+	padding: 3rem;
+	border:1px solid rgba(0,0,0,.1);
+}
+
+.Contact p span{
+	transition: all .5s ease-in-out;
+}
+.Contact p span{
+	cursor: pointer;
+}
+
+.Contact p span:hover{
+	color: green
+}
+
+.Error{
+	color: red;
+	font-size: 18px;
+	padding: 14px;
+	border:1px solid red;
+	border-radius: 3px;
+	font-weight: bold;
+	background-color: #FFC8C3
+}
+
+@media(min-width: 600px){
+	.Contact{
+		width: 500px
+	}
+}

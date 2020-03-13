@@ -18,7 +18,7 @@ const Sidenav = (props)=>{
 					<Logo/>
 				</div>
 				<nav>
-					<Navitems/>
+					<Navitems isAuth = {props.isAuth}/>
 				</nav>
 			</div>
 		</Aux>

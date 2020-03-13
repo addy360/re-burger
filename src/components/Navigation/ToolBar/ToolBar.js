@@ -13,7 +13,7 @@ const ToolBar = (props)=>{
 				<Logo/>
 			</div>
 			<nav className="DesktopOnly">
-				<Navitems/>
+				<Navitems isAuth = {props.isAuth}/>
 			</nav>
 		</header>
 	)

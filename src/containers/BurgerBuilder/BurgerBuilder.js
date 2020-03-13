@@ -10,7 +10,7 @@ import withError from '../../hoc/withError/withError'
 import axios from '../../axios-orders'
 
 import { connect } from 'react-redux'
-import { addIngredient, removeIngredient , initIngredients, purchaseInit} from '../../store/actions/index'
+import { addIngredient, removeIngredient , initIngredients, purchaseInit, setAuthRedirectPath} from '../../store/actions/index'
 
 
 class BurgerBuilder extends Component{
@@ -40,6 +40,15 @@ class BurgerBuilder extends Component{
 		this.setState({modal:!this.state.modal})
 	}
 
+	purchaseHandler = ()=>{
+		if(this.props.isAuth){ 
+			this.setState({modal:!this.state.modal}) 
+		} else{
+			this.props.onSetAuthRedirectPath('/checkout') 
+			this.props.history.push('/auth')
+		}
+	}
+
 	continueHandler = ()=>{
 		this.props.onInitPurchase()
 		this.props.history.push({
@@ -59,10 +68,11 @@ class BurgerBuilder extends Component{
 				<Aux>
 					<Burger ingredients={this.props.ings} />
 					<BurgerControls 
+					isAuth = {this.props.isAuth}
 					price={this.props.price} 
 					onSub = {this.props.onRemoveIngs} 
 					onAdd = {this.props.onAddIngs}
-					modal={this.modalHandler}
+					modal={this.purchaseHandler}
 					purchasable={ this.updatePurchaseState(this.props.ings) }/>
 				</Aux>
 			)
@@ -93,7 +103,8 @@ const mapStateToProps = state=>{
 	return {
 		ings:state.burgerBuilder.ingredients,
 		price:state.burgerBuilder.totalPrice,
-		error:state.burgerBuilder.error
+		error:state.burgerBuilder.error,
+		isAuth:!!state.auth.token
 	}
 }
 
@@ -102,7 +113,8 @@ const mapDispatchToProps = dispatch=>{
 		onAddIngs:(ingName)=>dispatch(addIngredient(ingName)),
 		onRemoveIngs:(ingName)=>dispatch(removeIngredient(ingName)),
 		onInitIngredients:()=> dispatch(initIngredients()),
-		onInitPurchase:()=>dispatch(purchaseInit())
+		onInitPurchase:()=>dispatch(purchaseInit()),
+		onSetAuthRedirectPath:(path)=>dispatch(setAuthRedirectPath(path))
 	}
 }
 

@@ -20,7 +20,7 @@ const BuildControls = (props)=>{
 			}) }
 			<button disabled={!props.purchasable} 
 			onClick = {props.modal}
-			className="OrderButton">CheckOut your finished burger now!</button>
+			className="OrderButton">{ props.isAuth ? "CheckOut your finished burger now!": "Signup to Continue"}</button>
 		</div>
 	)
 }

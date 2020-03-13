@@ -53,11 +53,11 @@ class Contact extends Component{
 		const order = {
 			ingredients: this.props.ings,
 			price:this.props.price,
-			customer:formData
-			
+			customer:formData,
+			userId:this.props.userId
 		}
 
-		this.props.onOrder(order)
+		this.props.onOrder(order,this.props.token)
 		// console.log(order)
 		
 		// console.log(this.props)
@@ -107,13 +107,15 @@ const mapStateToProps = state=>{
 	return {
 		ings: state.burgerBuilder.ingredients,
 		price:state.burgerBuilder.totalPrice,
-		loading:state.orders.loading
+		loading:state.orders.loading,
+		token:state.auth.token,
+		userId:state.auth.userId
 	}
 }
 
 const mapDispatchToProps = dispatch =>{
 	return {
-		onOrder:(orderData)=> dispatch(purchaseBurgerStart(orderData))
+		onOrder:(orderData, token)=> dispatch(purchaseBurgerStart(orderData,token))
 	}
 }
 
