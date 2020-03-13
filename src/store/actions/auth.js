@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { AUTH_FAIL,AUTH_SUCCESS,AUTH_START, AUTH_LOGOUT, SET_AUTH_REDIRECT_PATH } from './types'
-import { API_KEY } from '../../../keys'
+import { API_KEY } from '../../keys'
 
 export const authStart = () =>{
 	return {
