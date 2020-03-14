@@ -27,6 +27,11 @@ const reducer = (state=initialState, action)=>{
 				totalPrice : state.totalPrice + ING_PRICES[action.name]
 			}
 		case REMOVE_INGREDIENT:
+			if (state.ingredients[action.name]===0){
+				return {
+					...state
+				}
+			}
 			return {
 				...state,
 				building:true,
